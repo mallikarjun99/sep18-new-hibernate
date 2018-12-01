@@ -26,7 +26,8 @@
     <c:if test="${not empty error}">
         Error: ${error}
     </c:if>
-    <f:form class="form-inline" action="/userDetails/add" method="post" modelAttribute="userDetails">
+    ${message}
+    <f:form class="form-inline" action="/userDetails/add" method="post" modelAttribute="us">
         <div class="form-group">
             <label for="username">UserName:</label>
             <input type="username" class="form-control" id="username" placeholder="Enter user name" name="username">

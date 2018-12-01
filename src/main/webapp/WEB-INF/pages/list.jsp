@@ -47,7 +47,7 @@
 
 <div>
     <%-- <a href="${pageContext.request.contextPath}/team/list.html">Team List</a>--%>
-    <a href="/userDetails/add.html">Add Team</a>
+    <a href="/userDetails/add.html">Add UserDetails</a>
 </div>
 </body>
 </html>

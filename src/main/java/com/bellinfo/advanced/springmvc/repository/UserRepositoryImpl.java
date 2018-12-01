@@ -31,6 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
     public void updateUserDetails(UserDetails userDetails) {
 
         UserDetails ud = getSession().get(UserDetails.class, userDetails.getId());
+
         ud.setUsername(userDetails.getUsername());
         ud.setPassword(userDetails.getPassword());
         getSession().saveOrUpdate(ud);
@@ -52,7 +53,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserDetails getUserDetails(String name) {
         List<UserDetails> list = getSession().createCriteria(UserDetails.class).add(Restrictions.eq("username", name)).list();
-        if(list == null){
+        if(list == null || list.isEmpty() || list.size() == 0){
             return null;
         }
         return list.get(0);

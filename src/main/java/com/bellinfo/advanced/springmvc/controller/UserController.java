@@ -5,7 +5,10 @@ import com.bellinfo.advanced.springmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -42,17 +45,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUserDetails(@ModelAttribute UserDetails userDetails, Model model) {
-        UserDetails details = userService.getUserDetails(userDetails.getUsername());
-        if(details == null){
-            userService.addUserDetails(userDetails);
-        } else {
+    public String addUserDetails(@ModelAttribute UserDetails us, Model model) {
+        UserDetails ud = userService.getUserDetails(us.getUsername());
+        if(ud == null){
+            model.addAttribute("message","Added successfully");
+        } else{
             model.addAttribute("error", "user already exists");
-            return "login";
         }
 
+       // model.addAttribute("error", "user already exists");
         return "login";
     }
+
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getUserDetails(Model model){
         List<UserDetails> list = userService.getUserDetails();
